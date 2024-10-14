@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.gitub.d33t5.jamf.microsoftteamsforworkorschoolc</string>
+	<string>com.gitub.sabkr1k.jamf.microsoftteamsforworkorschoolc</string>
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
@@ -34,7 +34,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.rtrouton.pkg.microsoftteams</string>
+	<string>com.github.sabkr1k.pkg.microsoftteams</string>
 	<key>Process</key>
 	<array>
 		<dict>
