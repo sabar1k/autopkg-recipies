@@ -5,22 +5,16 @@
     <key>Description</key>
     <string>Downloads the current release version of Sublime Text 4 and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.sabar1k.pkg.sublimetext</string>
+    <string>com.github.sabar1k.pkg.SublimeText</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Sublime Text</string>
-        <key>VENDOR</key>
-        <string>Sublime</string>
-        <key>SOFTWARETITLE</key>
-        <string>Sublime Text</string>
-        <key>VERSIONTYPE</key>
-        <string>CFBundleShortVersionString</string> <!-- Assuming you want to use this to get the version -->
+        <string>SublimeText4</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.sabar1k.download.sublimetext</string>
+    <string>com.github.sabar1k.download.SublimeText</string>
     <key>Process</key>
     <array>
         <dict>
@@ -31,7 +25,7 @@
                 <key>input_plist_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Sublime Text.app/Contents/Info.plist</string>
                 <key>plist_version_key</key>
-                <string>CFBundleShortVersionString</string> <!-- Fetch version from CFBundleShortVersionString -->
+                <string>CFBundleVersion</string>
             </dict>
         </dict>
         <dict>
@@ -42,7 +36,7 @@
                 <key>app_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Sublime Text.app</string>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%VERSION%.pkg</string> <!-- Ensure variable consistency -->
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
         </dict>
     </array>
