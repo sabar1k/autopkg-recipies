@@ -7,7 +7,7 @@
     <key>Description</key>
     <string>Downloads the current release version of Sublime Text 4</string>
     <key>Identifier</key>
-    <string>com.github.sabar1k.download.SublimeText</string>
+    <string>com.github.sabar1k.download.sublimetext</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
