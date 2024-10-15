@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the current release version of Sublime Text 4 and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.sabar1k.pkg.SublimeText</string>
+    <string>com.github.sabar1k.pkg.sublimetext</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>1.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.sabar1k.download.SublimeText</string>
+    <string>com.github.sabar1k.download.sublimetext</string>
     <key>Process</key>
     <array>
         <dict>
