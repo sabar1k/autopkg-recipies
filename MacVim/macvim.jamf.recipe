@@ -34,7 +34,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.sabar1k.pkg.MacVim</string>
+	<string>com.github.d33t5.pkg.calibre</string>
 	<key>Process</key>
 	<array>
 		<dict>
