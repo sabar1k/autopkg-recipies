@@ -2,16 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Creates a package, uploads it to Jamf and creates associated objects.</string>
 	<key>Identifier</key>
-	<string>com.github.sabar1k.jamf.MacVim</string>
+	<string>com.gitub.sabar1k.jamf.macvim</string>
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
-		<string>Productivity</string>
+		<string>Applications</string>
 		<key>GROUP_NAME</key>
-		<string>MacVim-update-smart</string>
+		<string>macvim-update-smart</string>
 		<key>GROUP_TEMPLATE</key>
 		<string>JamfSmartGroupTemplate.xml</string>
 		<key>NAME</key>
@@ -23,7 +21,7 @@
 		<key>POLICY_TEMPLATE</key>
 		<string>JamfPolicyTemplate.xml</string>
 		<key>SELF_SERVICE_DESCRIPTION</key>
-		<string>The online collaborative whiteboard platform to bring teams together, anytime, anywhere.</string>
+		<string>MacVim is a GUI version of Vim for macOS, offering a user-friendly interface while maintaining Vim's powerful editing features. It supports tabs and integrates seamlessly with macOS.</string>
 		<key>SELF_SERVICE_DISPLAY_NAME</key>
 		<string>Install Latest %NAME%</string>
 		<key>SELF_SERVICE_ICON</key>
@@ -39,24 +37,6 @@
 	<string>com.github.sabar1k.pkg.MacVim</string>
 	<key>Process</key>
 	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>category_name</key>
-				<string>%CATEGORY%</string>
-			</dict>
-			<key>Processor</key>
-			<string>com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>category_name</key>
-				<string>%POLICY_CATEGORY%</string>
-			</dict>
-			<key>Processor</key>
-			<string>com.github.grahampugh.jamf-upload.processors/JamfCategoryUploader</string>
-		</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
@@ -79,19 +59,6 @@
 			<key>Arguments</key>
 			<dict>
 				<key>computergroup_name</key>
-				<string>%STATIC_GROUP_NAME%</string>
-				<key>computergroup_template</key>
-				<string>%STATIC_GROUP_TEMPLATE%</string>
-				<key>replace_group</key>
-				<string>False</string>
-			</dict>
-			<key>Processor</key>
-			<string>com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>computergroup_name</key>
 				<string>%GROUP_NAME%</string>
 				<key>computergroup_template</key>
 				<string>%GROUP_TEMPLATE%</string>
@@ -105,7 +72,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>icon</key>
-				<string>%app_icon_path%</string>
+				<string>%SELF_SERVICE_ICON%</string>
 				<key>policy_name</key>
 				<string>%POLICY_NAME%</string>
 				<key>policy_template</key>
