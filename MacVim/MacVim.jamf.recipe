@@ -28,8 +28,8 @@
 		<string>Install Latest %NAME%</string>
 		<key>STATIC_GROUP_NAME</key>
 		<string>Testing</string>
-		<key>STATIC_GROUP_TEMPLATE</key>
-		<string>JamfStaticGroupTemplate.xml</string>
+		<key>SELF_SERVICE_ICON</key>
+		<string>%NAME%.png</string>
 		<key>TESTING_GROUP_NAME</key>
 		<string>Testing</string>
 		<key>UPDATE_PREDICATE</key>
