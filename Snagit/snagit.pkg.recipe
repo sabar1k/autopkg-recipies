@@ -3,13 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of MacVim and creates a package.</string>
+	<string>Downloads the latest version of Snagit and creates a package.</string>
 	<key>Identifier</key>
-	<string>com.github.sabar1k.pkg.snagit</string>
+	<string>com.sabar1k.github.pkg.Snagit</string>
 	<key>Input</key>
 	<dict>
-		<key>NAME</key>
+		<key>APP_FILENAME</key>
 		<string>Snagit 2024</string>
+		<key>NAME</key>
+		<string>Snagit</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>2.3</string>
