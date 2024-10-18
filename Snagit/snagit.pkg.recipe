@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Snagit and creates a package.</string>
 	<key>Identifier</key>
-	<string>com.sabar1k.github.pkg.Snagit</string>
+	<string>com.github.sabar1k.pkg.snagit</string>
 	<key>Input</key>
 	<dict>
 		<key>APP_FILENAME</key>
