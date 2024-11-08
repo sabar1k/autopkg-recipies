@@ -5,6 +5,6 @@
 4. snagit.jamf.recipe >> (https://github.com/sabar1k/autopkg-recipies.git)
 5. SublimeText.jamf.recipe >> (https://github.com/sabar1k/autopkg-recipies.git)
 6. AIfred.jamf.recipe >> (https://github.com/autopkg/hjuutilainen-recipes.git)
-
+7. AltTab.jamf.recipe >> (https://github.com/autopkg/apizz-recipes.git)
 
 
