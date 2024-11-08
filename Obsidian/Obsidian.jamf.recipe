@@ -21,7 +21,7 @@
 		<key>POLICY_TEMPLATE</key>
 		<string>JamfPolicyTemplate.xml</string>
 		<key>SELF_SERVICE_DESCRIPTION</key>
-		<string>Obsidian is a GUI version of Vim for macOS, offering a user-friendly interface while maintaining Vim's powerful editing features. It supports tabs and integrates seamlessly with macOS.</string>
+		<string>A second brain, for you, forever. Obsidian is a powerful knowledge base that works on top of a local folder of plain text Markdown files.</string>
 		<key>SELF_SERVICE_DISPLAY_NAME</key>
 		<string>Install Latest %NAME%</string>
 		<key>SELF_SERVICE_ICON</key>
