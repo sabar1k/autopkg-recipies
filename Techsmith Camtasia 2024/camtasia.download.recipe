@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Camtasia.</string>
     <key>Identifier</key>
-    <string>com.github.sabar1k.pkg.camtasia</string>
+    <string>com.github.sabar1k.download.camtasia</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
