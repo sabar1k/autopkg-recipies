@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest Camtasia DMG from the TechSmith web site. (Currently &quot;Camtasia 2023&quot;)</string>
 	<key>Identifier</key>
-	<string>com.github.jps3.download.Camtasia</string>
+	<string>com.github.sabar1k.download.camtasia</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>

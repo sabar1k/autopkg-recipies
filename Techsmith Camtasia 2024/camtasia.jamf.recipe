@@ -21,7 +21,7 @@
 		<key>POLICY_TEMPLATE</key>
 		<string>JamfPolicyTemplate.xml</string>
 		<key>SELF_SERVICE_DESCRIPTION</key>
-		<string>Camtasia is a recording software that allows you to record and clip whatever is happening on your screen: perfect for filming webinars or video tutorials.</string>
+		<string>A powerful, yet easy-to-use screen recorder, Camtasia helps you create professional videos without having to be a video pro. Easily record your screen movements and actions, or import HD video from a camera or other source. Customize and edit content on both Mac and Windows platforms, and share your videos with viewers on nearly any device.</string>
 		<key>SELF_SERVICE_DISPLAY_NAME</key>
 		<string>Install Latest %NAME%</string>
 		<key>SELF_SERVICE_ICON</key>
