@@ -79,9 +79,9 @@
                 <key>app_name</key>
                 <string>Miro.app</string>
                 <key>intel_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
+                <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
                 <key>arm_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+                <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
                 <key>pkg_output_path</key>
                 <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
             </dict>
