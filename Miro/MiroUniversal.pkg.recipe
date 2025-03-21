@@ -25,7 +25,7 @@
 <!-- Mount and extract Intel -->
 <dict>
     <key>Processor</key>
-    <string>AppDmgVersioner</string>
+    <string>AppDmgMounter</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
@@ -47,7 +47,7 @@
 <!-- Mount and extract ARM -->
 <dict>
     <key>Processor</key>
-    <string>AppDmgVersioner</string>
+    <string>AppDmgMounter</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
