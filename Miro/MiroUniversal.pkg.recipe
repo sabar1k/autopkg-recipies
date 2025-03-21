@@ -50,20 +50,22 @@
 <!-- Mount and extract ARM -->
 <dict>
     <key>Processor</key>
-    <string>AppDmgVersioner</string>
+    <string>DmgMounter</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
         <string>%RECIPE_CACHE_DIR%/downloads/Miro-ARM.dmg</string>
+        <key>mount_point_output_variable</key>
+        <string>arm_mount_path</string>
     </dict>
 </dict>
 <dict>
     <key>Processor</key>
-    <string>Copier</string>
+    <string>DmgCopier</string>
     <key>Arguments</key>
     <dict>
         <key>source_path</key>
-        <string>%pathname%/Miro.app</string>
+        <string>%arm_mount_path%/Miro.app</string>
         <key>destination_path</key>
         <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
     </dict>
