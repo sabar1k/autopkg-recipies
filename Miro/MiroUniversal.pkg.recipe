@@ -32,17 +32,39 @@
 				<string>%RECIPE_CACHE_DIR%/downloads/Miro-Intel.dmg</string>
             </dict>
         </dict>
-
-        <!-- Mount ARM -->
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>Copier</string>
             <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-				<string>%RECIPE_CACHE_DIR%/downloads/Miro-ARM.dmg</string>
-            </dict>
+         <dict>
+            <key>source_path</key>
+            <string>%pathname%/Miro.app</string>
+            <key>destination_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
         </dict>
+    </dict>
+
+       <!-- Mount and extract ARM -->
+<dict>
+    <key>Processor</key>
+    <string>AppDmgVersioner</string>
+    <key>Arguments</key>
+    <dict>
+        <key>dmg_path</key>
+        <string>%RECIPE_CACHE_DIR%/downloads/Miro-ARM.dmg</string>
+    </dict>
+</dict>
+<dict>
+    <key>Processor</key>
+    <string>Copier</string>
+    <key>Arguments</key>
+    <dict>
+        <key>source_path</key>
+        <string>%pathname%/Miro.app</string>
+        <key>destination_path</key>
+        <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+    </dict>
+</dict>
 
         <!-- Combine binaries -->
         <dict>
