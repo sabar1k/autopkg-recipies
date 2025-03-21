@@ -10,6 +10,10 @@
 		<dict>
 			<key>NAME</key>
 			<string>Miro</string>
+            <key>Intel-NAME</key>
+            <string>Miro-Intel</string>
+            <key>ARM-NAME</key>
+            <string>Miro-ARM</string>
 		</dict>
 		<key>MinimumVersion</key>
 		<string>0.2.5</string>
@@ -25,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-				<string>%pathname%</string>
+				<string>%pathname%/%Intel-NAME%</string>
             </dict>
         </dict>
 
@@ -36,11 +40,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Install-Miro-ARM.dmg</string>
-                <key>app_path</key>
-                <string>Miro.app</string>
-                <key>output_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+				<string>%pathname%/%ARM-NAME%</string>
             </dict>
         </dict>
 
