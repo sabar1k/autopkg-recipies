@@ -25,7 +25,7 @@
 <!-- Mount and extract Intel -->
 <dict>
     <key>Processor</key>
-    <string>AppDmgMounter</string>
+    <string>AppDmgVersioner</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
@@ -43,11 +43,20 @@
         <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
     </dict>
 </dict>
+<dict>
+    <key>Processor</key>
+    <string>CommandRunner</string>
+    <key>Arguments</key>
+    <dict>
+        <key>command</key>
+        <string>hdiutil detach "%pathname%" || echo "Intel unmount failed, skipping..."</string>
+    </dict>
+</dict>
 
 <!-- Mount and extract ARM -->
 <dict>
     <key>Processor</key>
-    <string>AppDmgMounter</string>
+    <string>AppDmgVersioner</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
@@ -63,6 +72,15 @@
         <string>%pathname%/Miro.app</string>
         <key>destination_path</key>
         <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
+    </dict>
+</dict>
+<dict>
+    <key>Processor</key>
+    <string>CommandRunner</string>
+    <key>Arguments</key>
+    <dict>
+        <key>command</key>
+        <string>hdiutil detach "%pathname%" || echo "ARM unmount failed, skipping..."</string>
     </dict>
 </dict>
 
