@@ -30,6 +30,10 @@
     <dict>
         <key>dmg_path</key>
         <string>%RECIPE_CACHE_DIR%/downloads/Miro-Intel.dmg</string>
+        <key>app_path</key>
+        <string>Miro.app</string>
+        <key>output_path</key>
+        <string>%RECIPE_CACHE_DIR%/Intel/Miro.app</string>
     </dict>
 </dict>
 <dict>
@@ -53,6 +57,10 @@
     <dict>
         <key>dmg_path</key>
         <string>%RECIPE_CACHE_DIR%/downloads/Miro-ARM.dmg</string>
+          <key>app_path</key>
+        <string>Miro.app</string>
+        <key>output_path</key>
+        <string>%RECIPE_CACHE_DIR%/ARM/Miro.app</string>
     </dict>
 </dict>
 <dict>
@@ -73,9 +81,9 @@
     <key>Arguments</key>
     <dict>
         <key>intel_app_path</key>
-        <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
+        <string>%RECIPE_CACHE_DIR%/Applications/Intel//Miro-Intel.app</string>
         <key>arm_app_path</key>
-        <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+        <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
         <key>output_app_path</key>
         <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
         <key>binary_relative_path</key>
