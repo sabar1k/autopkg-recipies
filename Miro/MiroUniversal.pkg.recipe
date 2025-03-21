@@ -25,13 +25,15 @@
 <!-- Mount and extract Intel -->
 <dict>
     <key>Processor</key>
-    <string>DmgMounter</string>
+    <string>AppDmgVersioner</string>
     <key>Arguments</key>
     <dict>
         <key>dmg_path</key>
         <string>%RECIPE_CACHE_DIR%/downloads/Miro-Intel.dmg</string>
-        <key>mount_point_output_variable</key>
-        <string>intel_mount_path</string>
+        <key>app_path</key>
+        <string>Miro.app</string>
+        <key>output_path</key>
+        <string>%RECIPE_CACHE_DIR%/Intel/Miro.app</string>
     </dict>
 </dict>
 <dict>
