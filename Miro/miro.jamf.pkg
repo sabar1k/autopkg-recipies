@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.yourorg.pkg.miro-universal</string>
+    <key>Description</key>
+    <string>Downloads Intel and ARM builds of Miro and creates a universal package</string>
+    <key>Input</key>
+    <dict>
+        <key>intel_download_url</key>
+        <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
+        <key>arm_download_url</key>
+        <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
+    </dict>
+    <key>Process</key>
+    <array>
+        <!-- Download Intel -->
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%intel_download_url%</string>
+                <key>download_path</key>
+                <string>./intel_miro.dmg</string>
+            </dict>
+        </dict>
+
+        <!-- Download ARM -->
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%arm_download_url%</string>
+                <key>download_path</key>
+                <string>./arm_miro.dmg</string>
+            </dict>
+        </dict>
+
+        <!-- Mount and extract Intel -->
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>./intel_miro.dmg</string>
+                <key>app_path</key>
+                <string>Miro.app</string>
+                <key>output_path</key>
+                <string>./Miro-Intel.app</string>
+            </dict>
+        </dict>
+
+        <!-- Mount and extract ARM -->
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>./arm_miro.dmg</string>
+                <key>app_path</key>
+                <string>Miro.app</string>
+                <key>output_path</key>
+                <string>./Miro-ARM.app</string>
+            </dict>
+        </dict>
+
+        <!-- Combine into Universal -->
+        <dict>
+            <key>Processor</key>
+            <string>MiroUniversalLipo</string>
+            <key>Arguments</key>
+            <dict>
+                <key>intel_app_path</key>
+                <string>./Miro-Intel.app</string>
+                <key>arm_app_path</key>
+                <string>./Miro-ARM.app</string>
+                <key>output_app_path</key>
+                <string>./Miro-Universal.app</string>
+            </dict>
+        </dict>
+
+        <!-- Package it -->
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>app_path</key>
+                <string>./Miro-Universal.app</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>pkg_name</key>
+                    <string>Miro-Universal.pkg</string>
+                    <key>version</key>
+                    <string>1.0</string>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
