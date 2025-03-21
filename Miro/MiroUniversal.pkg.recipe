@@ -1,161 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <key>Description</key>
-    <string>Downloads the latest Intel and Apple Silicon releases of Miro, combines them into a universal Miro.app, and builds a package.</string>
-    <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.pkg.Miro</string>
-    <key>Input</key>
-<dict>
-    <key>NAME</key>
-    <string>Miro</string>
-    <key>INTEL_DOWNLOAD_URL</key>
-    <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
-    <key>ARM_DOWNLOAD_URL</key>
-    <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
-    <key>INTEL_DMG</key>
-    <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-Intel.dmg</string>
-    <key>ARM_DMG</key>
-    <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-ARM.dmg</string>
-    <key>RECIPE_CACHE_DIR</key>
-    <string>%CACHE_DIR%</string>
-</dict>
-    <key>MinimumVersion</key>
-    <string>1.0.0</string>
+	<dict>
+		<key>Description</key>
+		<string>Downloads the current release version of Miro and creates a package.</string>
+		<key>Identifier</key>
+		<string>com.github.sabar1k.pkg.MiroUniversal</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>Miro</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>0.2.5</string>
+		<key>ParentRecipe</key>
+		<string>com.github.sabar1k.download.MiroUniversal</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%INTEL_DOWNLOAD_URL%</string>
-                <key>filename</key>
-                <string>%NAME%-Intel.dmg</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%ARM_DOWNLOAD_URL%</string>
-                <key>filename</key>
-                <string>%NAME%-ARM.dmg</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>EndOfCheckPhase</string>
-        </dict>
+
+        <!-- Mount Intel -->
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%INTEL_DMG%</string>
+				<string>%pathname%</string>
             </dict>
         </dict>
-        <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_path</key>
-                <string>%pathname%/Miro.app</string>
-                <key>requirement</key>
-                <string>identifier "com.electron.realtimeboard" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = AWEYX923UX</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Copier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source_path</key>
-                <string>%pathname%/Miro.app</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-Intel.app</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>mount_point</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
+
+        <!-- Mount ARM -->
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%ARM_DMG%</string>
+                <string>%RECIPE_CACHE_DIR%/Install-Miro-ARM.dmg</string>
+                <key>app_path</key>
+                <string>Miro.app</string>
+                <key>output_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
             </dict>
         </dict>
-        <dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_path</key>
-                <string>%pathname%/Miro.app</string>
-                <key>requirement</key>
-                <string>identifier "com.electron.realtimeboard" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = AWEYX923UX</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Copier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source_path</key>
-                <string>%pathname%/Miro.app</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-ARM.app</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>mount_point</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
+
+        <!-- Combine binaries -->
         <dict>
             <key>Processor</key>
             <string>UniversalLipoCombiner</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path_x86_64</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-Intel.app</string>
-                <key>source_path_arm64</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-ARM.app</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.app</string>
+                <key>intel_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
+                <key>arm_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+                <key>output_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
             </dict>
         </dict>
+
+        <!-- Create package root -->
         <dict>
             <key>Processor</key>
-            <string>AppPkgCreator</string>
+            <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>app_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.app</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
             </dict>
         </dict>
+
+        <!-- Copy the app into pkgroot -->
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications/Miro.app</string>
+            </dict>
+        </dict>
+
+        <!-- Create the PKG -->
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>pkgname</key>
+                    <string>%NAME%-Universal</string>
+                    <key>id</key>
+                    <string>com.miro.universal</string>
+                    <key>version</key>
+                    <string>1.0</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
+                        </dict>
+                    </array>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+            </dict>
+        </dict>
+
     </array>
 </dict>
 </plist>

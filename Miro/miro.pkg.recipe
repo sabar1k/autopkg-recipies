@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads Intel and Apple Silicon versions of Miro, creates a Universal app, and packages it.</string>
     <key>Identifier</key>
-    <string>com.yourorg.pkg.Miro-Universal</string>
+    <string>com.github.sabar1k.pkg.Miro-Universal</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -40,11 +40,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Install-Miro-Intel.dmg</string>
-                <key>app_path</key>
-                <string>Miro.app</string>
-                <key>output_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
+				<string>%pathname%</string>
             </dict>
         </dict>
 

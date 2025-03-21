@@ -6,7 +6,7 @@
         Downloads both Intel and ARM builds of Miro and prepares them for universal packaging.
     </string>
     <key>Identifier</key>
-    <string>com.yourorg.download.MiroUniversal</string>
+    <string>com.github.sabar1k.download.MiroUniversal</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
