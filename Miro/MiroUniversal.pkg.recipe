@@ -24,7 +24,6 @@
 
 <!-- Mount and extract Intel -->
 <dict>
-    <dict>
     <key>Processor</key>
     <string>DmgMounter</string>
     <key>Arguments</key>
