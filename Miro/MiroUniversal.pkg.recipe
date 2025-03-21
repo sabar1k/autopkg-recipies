@@ -68,18 +68,18 @@
 
         <!-- Combine binaries -->
         <dict>
-            <key>Processor</key>
-            <string>UniversalLipoCombiner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>intel_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
-                <key>arm_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
-                <key>output_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
-            </dict>
-        </dict>
+    <key>Processor</key>
+    <string>UniversalLipoCombiner</string>
+    <key>Arguments</key>
+    <dict>
+        <key>intel_app_path</key>
+        <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
+        <key>arm_app_path</key>
+        <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+        <key>output_app_path</key>
+        <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
+    </dict>
+</dict>
 
         <!-- Create package root -->
         <dict>
