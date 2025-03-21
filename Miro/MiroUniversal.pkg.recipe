@@ -8,18 +8,20 @@
     <key>Identifier</key>
     <string>com.github.dataJAR-recipes.pkg.Miro</string>
     <key>Input</key>
-    <dict>
-        <key>NAME</key>
-        <string>Miro</string>
-        <key>INTEL_DOWNLOAD_URL</key>
-        <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
-        <key>ARM_DOWNLOAD_URL</key>
-        <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
-        <key>INTEL_DMG</key>
-        <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-Intel.dmg</string>
-        <key>ARM_DMG</key>
-        <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-ARM.dmg</string>
-    </dict>
+<dict>
+    <key>NAME</key>
+    <string>Miro</string>
+    <key>INTEL_DOWNLOAD_URL</key>
+    <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
+    <key>ARM_DOWNLOAD_URL</key>
+    <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
+    <key>INTEL_DMG</key>
+    <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-Intel.dmg</string>
+    <key>ARM_DMG</key>
+    <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-ARM.dmg</string>
+    <key>RECIPE_CACHE_DIR</key>
+    <string>%CACHE_DIR%</string>
+</dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
     <key>Process</key>
@@ -83,7 +85,7 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>DmgUnmounter</string>
+            <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>mount_point</key>
@@ -123,7 +125,7 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>DmgUnmounter</string>
+            <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>mount_point</key>
