@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>
+        Downloads both Intel and ARM builds of Miro and prepares them for universal packaging.
+    </string>
+    <key>Identifier</key>
+    <string>com.yourorg.download.MiroUniversal</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Miro</string>
+        <key>INTEL_URL</key>
+        <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
+        <key>ARM_URL</key>
+        <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
+    </dict>
+    <key>Process</key>
+    <array>
+
+        <!-- Download Intel -->
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%INTEL_URL%</string>
+                <key>filename</key>
+                <string>Miro-Intel.dmg</string>
+            </dict>
+        </dict>
+
+        <!-- Download ARM -->
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%ARM_URL%</string>
+                <key>filename</key>
+                <string>Miro-ARM.dmg</string>
+            </dict>
+        </dict>
+
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>
