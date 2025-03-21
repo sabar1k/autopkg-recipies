@@ -38,7 +38,7 @@
     <key>Arguments</key>
     <dict>
         <key>source_path</key>
-        <string>%pathname%/Miro.app</string>
+        <string>%pathname%/Applications/Intel/Miro.app</string>
         <key>destination_path</key>
         <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
     </dict>
@@ -60,7 +60,7 @@
     <key>Arguments</key>
     <dict>
         <key>source_path</key>
-        <string>%pathname%/Miro.app</string>
+        <string>%pathname%/Applications/Intel/Miro.app</string>
         <key>destination_path</key>
         <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
     </dict>
