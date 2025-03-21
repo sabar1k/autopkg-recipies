@@ -2,9 +2,9 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.yourorg.pkg.miro-universal</string>
+    <string>com.github.sabar1k.download.miro</string>
     <key>Description</key>
-    <string>Downloads Intel and ARM builds of Miro and creates a universal package</string>
+    <string>Downloads Miro for Intel and ARM, merges with lipo, and builds a universal package.</string>
     <key>Input</key>
     <dict>
         <key>intel_download_url</key>
@@ -23,7 +23,22 @@
                 <key>url</key>
                 <string>%intel_download_url%</string>
                 <key>download_path</key>
-                <string>./intel_miro.dmg</string>
+                <string>./Install-Miro-Intel.dmg</string>
+            </dict>
+        </dict>
+
+        <!-- Mount Intel -->
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>./Install-Miro-Intel.dmg</string>
+                <key>app_path</key>
+                <string>Miro.app</string>
+                <key>output_path</key>
+                <string>./Miro-Intel.app</string>
             </dict>
         </dict>
 
@@ -36,33 +51,18 @@
                 <key>url</key>
                 <string>%arm_download_url%</string>
                 <key>download_path</key>
-                <string>./arm_miro.dmg</string>
+                <string>./Install-Miro-ARM.dmg</string>
             </dict>
         </dict>
 
-        <!-- Mount and extract Intel -->
+        <!-- Mount ARM -->
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>./intel_miro.dmg</string>
-                <key>app_path</key>
-                <string>Miro.app</string>
-                <key>output_path</key>
-                <string>./Miro-Intel.app</string>
-            </dict>
-        </dict>
-
-        <!-- Mount and extract ARM -->
-        <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_path</key>
-                <string>./arm_miro.dmg</string>
+                <string>./Install-Miro-ARM.dmg</string>
                 <key>app_path</key>
                 <string>Miro.app</string>
                 <key>output_path</key>
@@ -70,10 +70,10 @@
             </dict>
         </dict>
 
-        <!-- Combine into Universal -->
+        <!-- Merge into Universal -->
         <dict>
             <key>Processor</key>
-            <string>MiroUniversalLipo</string>
+            <string>UniversalLipoCombiner</string>
             <key>Arguments</key>
             <dict>
                 <key>intel_app_path</key>
@@ -85,7 +85,7 @@
             </dict>
         </dict>
 
-        <!-- Package it -->
+        <!-- Build .pkg -->
         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>
