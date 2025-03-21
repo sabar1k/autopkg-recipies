@@ -67,15 +67,7 @@
                 <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
             </dict>
         </dict>
-        <dict>
-            <key>Processor</key>
-            <string>CommandRunner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>command</key>
-                <string>hdiutil detach "%intel_mount_path%" || echo "Intel unmount failed, continuing..."</string>
-            </dict>
-        </dict>
+        
         <dict>
             <key>Processor</key>
             <string>DmgMounter</string>
@@ -98,15 +90,7 @@
                 <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
             </dict>
         </dict>
-        <dict>
-            <key>Processor</key>
-            <string>CommandRunner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>command</key>
-                <string>hdiutil detach "%arm_mount_path%" || echo "ARM unmount failed, continuing..."</string>
-            </dict>
-        </dict>
+        
         <dict>
             <key>Processor</key>
             <string>UniversalFlatPkgBuilder</string>
