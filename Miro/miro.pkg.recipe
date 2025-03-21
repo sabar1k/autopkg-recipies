@@ -10,6 +10,10 @@
     <dict>
         <key>NAME</key>
         <string>Miro</string>
+         <key>Intel-NAME</key>
+        <string>Miro-Intel</string>
+         <key>ARM-NAME</key>
+        <string>Miro-ARM</string>
         <key>intel_url</key>
         <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
         <key>arm_url</key>
@@ -40,7 +44,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-				<string>%pathname%</string>
+				<string>%pathname%/%Intel-NAME%</string>
             </dict>
         </dict>
 
@@ -59,16 +63,12 @@
 
         <!-- Mount ARM -->
         <dict>
-            <key>Processor</key>
+                <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Install-Miro-ARM.dmg</string>
-                <key>app_path</key>
-                <string>Miro.app</string>
-                <key>output_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
+				<string>%pathname%/%Intel-NAME%</string>
             </dict>
         </dict>
 
