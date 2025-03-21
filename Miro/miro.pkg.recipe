@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Identifier</key>
-    <string>com.github.sabar1k.download.miro</string>
     <key>Description</key>
-    <string>Downloads Miro for Intel and ARM, merges with lipo, and builds a universal package.</string>
+    <string>Downloads Intel and Apple Silicon versions of Miro, creates a Universal app, and packages it.</string>
+    <key>Identifier</key>
+    <string>com.yourorg.pkg.Miro-Universal</string>
     <key>Input</key>
     <dict>
-        <key>intel_download_url</key>
+        <key>NAME</key>
+        <string>Miro</string>
+        <key>intel_url</key>
         <string>https://desktop.miro.com/platforms/darwin/Install-Miro.dmg</string>
-        <key>arm_download_url</key>
+        <key>arm_url</key>
         <string>https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg</string>
     </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.5</string>
     <key>Process</key>
     <array>
+
         <!-- Download Intel -->
         <dict>
             <key>Processor</key>
@@ -21,9 +27,9 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%intel_download_url%</string>
+                <string>%intel_url%</string>
                 <key>download_path</key>
-                <string>./Install-Miro-Intel.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/Install-Miro-Intel.dmg</string>
             </dict>
         </dict>
 
@@ -33,12 +39,12 @@
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
-                <key>input_path</key>
-                <string>./Install-Miro-Intel.dmg</string>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/Install-Miro-Intel.dmg</string>
                 <key>app_path</key>
                 <string>Miro.app</string>
                 <key>output_path</key>
-                <string>./Miro-Intel.app</string>
+                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
             </dict>
         </dict>
 
@@ -49,9 +55,9 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%arm_download_url%</string>
+                <string>%arm_url%</string>
                 <key>download_path</key>
-                <string>./Install-Miro-ARM.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/Install-Miro-ARM.dmg</string>
             </dict>
         </dict>
 
@@ -61,47 +67,92 @@
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
-                <key>input_path</key>
-                <string>./Install-Miro-ARM.dmg</string>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/Install-Miro-ARM.dmg</string>
                 <key>app_path</key>
                 <string>Miro.app</string>
                 <key>output_path</key>
-                <string>./Miro-ARM.app</string>
+                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
             </dict>
         </dict>
 
-        <!-- Merge into Universal -->
+        <!-- Combine binaries -->
         <dict>
             <key>Processor</key>
             <string>UniversalLipoCombiner</string>
             <key>Arguments</key>
             <dict>
                 <key>intel_app_path</key>
-                <string>./Miro-Intel.app</string>
+                <string>%RECIPE_CACHE_DIR%/Miro-Intel.app</string>
                 <key>arm_app_path</key>
-                <string>./Miro-ARM.app</string>
+                <string>%RECIPE_CACHE_DIR%/Miro-ARM.app</string>
                 <key>output_app_path</key>
-                <string>./Miro-Universal.app</string>
+                <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
             </dict>
         </dict>
 
-        <!-- Build .pkg -->
+        <!-- Create package root -->
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>
+
+        <!-- Copy the app into pkgroot -->
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-Universal.app</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications/Miro.app</string>
+            </dict>
+        </dict>
+
+        <!-- Create the PKG -->
         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>app_path</key>
-                <string>./Miro-Universal.app</string>
                 <key>pkg_request</key>
                 <dict>
-                    <key>pkg_name</key>
-                    <string>Miro-Universal.pkg</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-Universal</string>
+                    <key>id</key>
+                    <string>com.miro.universal</string>
                     <key>version</key>
                     <string>1.0</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
+                        </dict>
+                    </array>
                 </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
             </dict>
         </dict>
+
     </array>
 </dict>
 </plist>
