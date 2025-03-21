@@ -36,7 +36,7 @@
 </dict>
 <dict>
     <key>Processor</key>
-    <string>Copier</string>
+    <string>DmgCopier</string>
     <key>Arguments</key>
     <dict>
         <key>source_path</key>
