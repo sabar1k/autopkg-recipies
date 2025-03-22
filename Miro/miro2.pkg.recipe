@@ -73,37 +73,19 @@
         
         <dict>
             <key>Processor</key>
-            <string>UniversalPkgStager</string>
+            <string>UniversalFlatPkgBuilder</string>
             <key>Arguments</key>
             <dict>
-                <key>application_name</key>
+                <key>app_name</key>
                 <string>Miro.app</string>
-                <key>apple_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
-                <key>intel_path</key>
+                <key>intel_app_path</key>
                 <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
-                <key>match_versions</key>
-                <true/>
+                <key>arm_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
+                <key>pkg_output_path</key>
+                <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
             </dict>
         </dict>
-       <dict>
-    <key>Processor</key>
-    <string>PkgCreator</string>
-    <key>Arguments</key>
-    <dict>
-        <key>pkg_request</key>
-        <dict>
-            <key>version</key>
-            <string>%version%</string>
-            <key>identifier</key>
-            <string>%identifier%</string>
-            <key>scripts</key>
-            <string>%staged_scripts_dir%</string>
-            <key>payload</key>
-            <string></string>
-        </dict>
-    </dict>
-</dict> 
     </array>
 </dict>
 </plist>
