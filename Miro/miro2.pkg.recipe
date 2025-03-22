@@ -73,7 +73,7 @@
         
         <dict>
             <key>Processor</key>
-            <string>UniversalPkgBuilder</string>
+            <string>UniversalPkgStager</string>
             <key>Arguments</key>
             <dict>
                 <key>application_name</key>
@@ -86,6 +86,24 @@
                 <true/>
             </dict>
         </dict>
+       <dict>
+    <key>Processor</key>
+    <string>PkgCreator</string>
+    <key>Arguments</key>
+    <dict>
+        <key>pkg_request</key>
+        <dict>
+            <key>version</key>
+            <string>%version%</string>
+            <key>identifier</key>
+            <string>%identifier%</string>
+            <key>scripts</key>
+            <string>%staged_scripts_dir%</string>
+            <key>payload</key>
+            <string></string>
+        </dict>
+    </dict>
+</dict> 
     </array>
 </dict>
 </plist>
