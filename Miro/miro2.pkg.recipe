@@ -73,17 +73,17 @@
         
         <dict>
             <key>Processor</key>
-            <string>UniversalFlatPkgBuilder</string>
+            <string>UniversalPkgBuilder</string>
             <key>Arguments</key>
             <dict>
-                <key>app_name</key>
+                <key>application_name</key>
                 <string>Miro.app</string>
-                <key>intel_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
-                <key>arm_app_path</key>
+                <key>apple_path</key>
                 <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
-                <key>pkg_output_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
+                <key>intel_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
+                <key>match_versions</key>
+                <true/>
             </dict>
         </dict>
     </array>
