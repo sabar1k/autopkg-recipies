@@ -1,4 +1,4 @@
-from autopkglib import Processor, ProcessorError
+from autopkglib import Processor, ProcessorError, call_pkg_creator
 import os
 import shutil
 import subprocess
@@ -24,28 +24,53 @@ class UniversalPkgBuilder(Processor):
             "required": True,
             "description": "Path to the Intel version of the .app"
         },
-        "version": {
-            "required": True,
-            "description": "Version string for the package"
-        },
-        "identifier": {
-            "required": True,
-            "description": "Bundle identifier for the package"
+        "match_versions": {
+            "required": False,
+            "description": "Set to False to skip version/bundle ID match check.",
+            "default": True
         }
     }
 
     output_variables = {
         "universal_pkg_path": {
             "description": "Path to the created universal package."
+        },
+        "version": {
+            "description": "App version used in the package."
+        },
+        "identifier": {
+            "description": "Bundle identifier used in the package."
         }
     }
+
+    def get_app_metadata(self, app_path):
+        info_plist = os.path.join(app_path, "Contents", "Info.plist")
+        if not os.path.exists(info_plist):
+            raise ProcessorError(f"Missing Info.plist at: {info_plist}")
+        with open(info_plist, "rb") as f:
+            plist = plistlib.load(f)
+        return {
+            "version": plist.get("CFBundleShortVersionString") or plist.get("CFBundleVersion"),
+            "identifier": plist.get("CFBundleIdentifier"),
+        }
 
     def main(self):
         app_name = self.env["application_name"]
         apple_app = self.env["apple_path"]
         intel_app = self.env["intel_path"]
-        version = self.env["version"]
-        identifier = self.env["identifier"]
+        match_versions = self.env.get("match_versions", True)
+
+        # Get metadata
+        apple_meta = self.get_app_metadata(apple_app)
+        intel_meta = self.get_app_metadata(intel_app)
+
+        if match_versions:
+            if apple_meta != intel_meta:
+                raise ProcessorError(f"Version or identifier mismatch between architectures:\nApple: {apple_meta}\nIntel: {intel_meta}")
+
+        # Use Apple values
+        version = apple_meta["version"]
+        identifier = apple_meta["identifier"]
 
         # Working dirs
         work_dir = os.path.join(self.env.get("RECIPE_CACHE_DIR", "/tmp"), "universal_pkgbuild")
@@ -80,22 +105,18 @@ exit 0
 """)
         os.chmod(preinstall_path, 0o755)
 
-        # Use PkgCreator via autopkgserver
+        # Use PkgCreator
         pkg_path = os.path.join(self.env.get("RECIPE_CACHE_DIR", "."), f"{app_name}-{version}.pkg")
         pkg_request = {
             "version": version,
             "identifier": identifier,
             "scripts": scripts_dir,
-            "payload": ""  # Payload-free install
+            "payload": ""  # payload-free
         }
 
-        try:
-            from autopkglib import call_pkg_creator
-        except ImportError:
-            raise ProcessorError("PkgCreator support is not available. Make sure autopkgserver is running.")
-
-        # Call the shared PkgCreator interface
         call_pkg_creator(pkg_request, pkg_path)
 
         self.env["universal_pkg_path"] = pkg_path
+        self.env["version"] = version
+        self.env["identifier"] = identifier
         self.output(f"✅ Created universal package at: {pkg_path}")
