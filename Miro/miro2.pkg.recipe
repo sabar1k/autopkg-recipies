@@ -75,7 +75,7 @@
             </dict>
         </dict>
 
-        <!-- Build Intel pkg -->
+        <!-- Build Intel pkg
         <dict>
             <key>Processor</key>
             <string>BuildArchSpecificPkg</string>
@@ -90,7 +90,7 @@
             </dict>
         </dict>
 
-        <!-- Build ARM pkg -->
+        Build ARM pkg
         <dict>
             <key>Processor</key>
             <string>BuildArchSpecificPkg</string>
@@ -103,7 +103,7 @@
                 <key>output_pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/Miro-ARM.pkg</string>
             </dict>
-        </dict>
+        </dict> -->
 
         <!-- Wrap into Universal -->
         <dict>
@@ -111,10 +111,10 @@
             <string>BuildUniversalWrapperPkg</string>
             <key>Arguments</key>
             <dict>
-                <key>intel_pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Intel.pkg</string>
-                <key>arm_pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-ARM.pkg</string>
+                <key>intel_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
+                <key>arm_app_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
                 <key>output_universal_pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
             </dict>
