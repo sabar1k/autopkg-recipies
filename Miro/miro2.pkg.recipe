@@ -71,21 +71,54 @@
     </dict>
 </dict>
         
+
+
+<array>
+    <!-- Build Intel pkg -->
+    <dict>
+        <key>Processor</key>
+        <string>BuildArchSpecificPkg</string>
+        <key>Arguments</key>
         <dict>
-            <key>Processor</key>
-            <string>UniversalFlatPkgBuilder</string>
-            <key>Arguments</key>
-            <dict>
-                <key>app_name</key>
-                <string>Miro.app</string>
-                <key>intel_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
-                <key>arm_app_path</key>
-                <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
-                <key>pkg_output_path</key>
-                <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
-            </dict>
+            <key>app_path</key>
+            <string>%RECIPE_CACHE_DIR%/Applications/Intel/Miro-Intel.app</string>
+            <key>architecture</key>
+            <string>x86_64</string>
+            <key>output_pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-Intel.pkg</string>
         </dict>
-    </array>
+    </dict>
+
+    <!-- Build ARM pkg -->
+    <dict>
+        <key>Processor</key>
+        <string>BuildArchSpecificPkg</string>
+        <key>Arguments</key>
+        <dict>
+            <key>app_path</key>
+            <string>%RECIPE_CACHE_DIR%/Applications/ARM/Miro-ARM.app</string>
+            <key>architecture</key>
+            <string>arm64</string>
+            <key>output_pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-ARM.pkg</string>
+        </dict>
+    </dict>
+
+    <!-- Wrap into Universal -->
+    <dict>
+        <key>Processor</key>
+        <string>BuildUniversalWrapperPkg</string>
+        <key>Arguments</key>
+        <dict>
+            <key>intel_pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-Intel.pkg</string>
+            <key>arm_pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-ARM.pkg</string>
+            <key>output_universal_pkg_path</key>
+            <string>%RECIPE_CACHE_DIR%/Miro-Universal.pkg</string>
+        </dict>
+    </dict>
+</array>
+
 </dict>
 </plist>
