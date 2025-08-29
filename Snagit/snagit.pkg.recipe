@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.dataJAR-recipes.download.Snagit 2024</string>
+	<string>com.github.sabar1k.download.snagit</string>
 	<key>Process</key>
 	<array>
 		<dict>
