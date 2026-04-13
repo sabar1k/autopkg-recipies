@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the current release version of Codex and makes a package.</string>
     <key>Identifier</key>
-    <string>com.github.homebysix.pkg.Codex</string>
+    <string>com.github.sabar1k.pkg.Codex</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
